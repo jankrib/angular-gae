@@ -4,7 +4,8 @@
   "description": "Angular 2 on Google App Engine",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node bin/startup.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,11 @@
     "typescript": "^2.3.3"
   },
   "dependencies": {
-    "merge2": "^1.0.3"
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "errorhandler": "^1.5.0",
+    "express": "^4.15.3",
+    "merge2": "^1.0.3",
+    "path": "^0.12.7"
   }
 }
