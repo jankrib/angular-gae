@@ -1,0 +1,27 @@
+{
+  "name": "angular-gae",
+  "version": "1.0.0",
+  "description": "Angular 2 on Google App Engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jankrib/angular-gae.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jankrib/angular-gae/issues"
+  },
+  "homepage": "https://github.com/jankrib/angular-gae#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.7",
+    "typescript": "^2.3.3"
+  },
+  "dependencies": {
+    "merge2": "^1.0.3"
+  }
+}
