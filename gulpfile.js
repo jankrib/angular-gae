@@ -22,12 +22,10 @@ gulp.task('server', function() {
   });
 })
 
-var tsProject = ts.createProject({
-    declaration: true
-});
+var tsProject = ts.createProject('src/tsconfig.json');
 
 gulp.task('build', function() {
-    var tsResult = gulp.src('src/*.ts')
+    var tsResult = gulp.src('src/**/*.ts', {base: 'src'})
         .pipe(tsProject());
 
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
@@ -37,7 +35,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('watch', ['build', 'server'], function() {
-    gulp.watch('src/*.ts', ['build', 'server']);
+    gulp.watch('src/**/*.ts', ['build', 'server']);
 });
 
 // clean up if an error goes unhandled.

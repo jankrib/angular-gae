@@ -18,16 +18,30 @@
   },
   "homepage": "https://github.com/jankrib/angular-gae#readme",
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.1.7",
     "typescript": "^2.3.3"
   },
   "dependencies": {
+    "@angular/common": "~4.0.0",
+    "@angular/compiler": "~4.0.0",
+    "@angular/core": "^4.0.3",
+    "@angular/forms": "~4.0.0",
+    "@angular/http": "~4.0.0",
+    "@angular/platform-browser": "~4.0.0",
+    "@angular/platform-browser-dynamic": "~4.0.0",
+    "@angular/router": "~4.0.0",
+    "angular-in-memory-web-api": "^0.3.2",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
+    "core-js": "^2.4.1",
     "errorhandler": "^1.5.0",
     "express": "^4.15.3",
     "merge2": "^1.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "rxjs": "^5.4.0",
+    "systemjs": "^0.20.12",
+    "zone.js": "^0.8.11"
   }
 }
