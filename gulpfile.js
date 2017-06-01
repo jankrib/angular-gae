@@ -45,16 +45,16 @@ gulp.task('build-sass', function() {
 
 gulp.task('build', ['build-typescript', 'build-sass'], function() {
     var systemResult = gulp.src('system/*', {base: 'system'});
-    var fileResult = gulp.src('src/**/*.{html}', {base: 'src'});
+    var fileResult = gulp.src('src/**/*.{html,css}', {base: 'src'});
 
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
-        systemResult.pipe(gulp.dest('dist')),
+        systemResult.pipe(gulp.dest('dist/client')),
         fileResult.pipe(gulp.dest('dist'))
     ]);
 });
 
 gulp.task('watch', ['build', 'server'], function() {
-    gulp.watch('src/**/*.{ts,html,scss}', ['build', 'server']);
+    gulp.watch('src/**/*.{ts,html,css,scss}', ['build', 'server']);
 });
 
 // clean up if an error goes unhandled.
