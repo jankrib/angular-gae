@@ -28,9 +28,16 @@ gulp.task('build', function() {
     var tsResult = gulp.src('src/**/*.ts', {base: 'src'})
         .pipe(tsProject());
 
+    var systemResult = gulp.src('system/*', {base: 'system'});
+
+    var fileResult = gulp.src('src/**/*.{html,css}', {base: 'src'});
+
+
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
         tsResult.dts.pipe(gulp.dest('dist')),
-        tsResult.js.pipe(gulp.dest('dist'))
+        tsResult.js.pipe(gulp.dest('dist')),
+        systemResult.pipe(gulp.dest('dist')),
+        fileResult.pipe(gulp.dest('dist'))
     ]);
 });
 

@@ -45,7 +45,7 @@ export class Server {
     this.api();
 
     this.app.get('/', function(req, res) {
-        res.sendFile(path.join(__dirname, '../system', 'index.html'));
+        res.sendFile(path.join(__dirname, 'index.html'));
     });
   }
 
@@ -76,8 +76,8 @@ export class Server {
 
     app.use(express.static(path.join(__dirname, "public")));
 
-    app.use('/node_modules', express.static('node_modules'))
-    app.use('/system', express.static('system'))
+    app.use('/node_modules', express.static('node_modules'));
+    app.use('/', express.static('dist'));
 
     // configure app to use bodyParser()
     // this will let us get the data from a POST
