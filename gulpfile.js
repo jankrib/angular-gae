@@ -1,5 +1,8 @@
 var gulp = require('gulp');
+
 var ts = require('gulp-typescript');
+var sass = require('gulp-sass');
+
 var merge = require('merge2');
 
 var spawn = require('child_process').spawn;
@@ -9,7 +12,7 @@ var node;
  * $ gulp server
  * description: launch the server. If there's a server already running, kill it.
  */
-gulp.task('server', function() {
+gulp.task('server', ['build'], function() {
   if (node)
     node.kill()
 
@@ -24,25 +27,34 @@ gulp.task('server', function() {
 
 var tsProject = ts.createProject('src/tsconfig.json');
 
-gulp.task('build', function() {
+gulp.task('build-typescript', function() {
     var tsResult = gulp.src('src/**/*.ts', {base: 'src'})
         .pipe(tsProject());
 
-    var systemResult = gulp.src('system/*', {base: 'system'});
-
-    var fileResult = gulp.src('src/**/*.{html,css}', {base: 'src'});
-
-
     return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
         tsResult.dts.pipe(gulp.dest('dist')),
-        tsResult.js.pipe(gulp.dest('dist')),
+        tsResult.js.pipe(gulp.dest('dist'))
+    ]);
+});
+
+gulp.task('build-sass', function() {
+    return gulp.src('src/**/*.scss', {base: 'src'})
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('dist'));
+});
+
+gulp.task('build', ['build-typescript', 'build-sass'], function() {
+    var systemResult = gulp.src('system/*', {base: 'system'});
+    var fileResult = gulp.src('src/**/*.{html}', {base: 'src'});
+
+    return merge([ // Merge the two output streams, so this task is finished when the IO of both operations is done.
         systemResult.pipe(gulp.dest('dist')),
         fileResult.pipe(gulp.dest('dist'))
     ]);
 });
 
 gulp.task('watch', ['build', 'server'], function() {
-    gulp.watch('src/**/*.ts', ['build', 'server']);
+    gulp.watch('src/**/*.{ts,html,scss}', ['build', 'server']);
 });
 
 // clean up if an error goes unhandled.

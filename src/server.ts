@@ -44,7 +44,7 @@ export class Server {
     //add api
     this.api();
 
-    this.app.get('/', function(req, res) {
+    this.app.get('*', function(req, res) {
         res.sendFile(path.join(__dirname, 'index.html'));
     });
   }
